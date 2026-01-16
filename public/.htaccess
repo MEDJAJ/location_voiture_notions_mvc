@@ -1,0 +1,34 @@
+########################################
+# ACTIVER REWRITE
+########################################
+RewriteEngine On
+RewriteBase /location_voiture_mvc/public/
+
+########################################
+# SÉCURITÉ
+########################################
+Options -Indexes
+
+<FilesMatch "\.(env|ini|log|sql|json|yml|yaml|md|txt)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+RewriteRule ^(app|config|core|vendor)/ - [F,L]
+
+########################################
+# IGNORER FICHIERS/DOSSIERS EXISTANTS
+########################################
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+########################################
+# ROUTAGE MVC (TOUTES LES URLS VERS index.php)
+########################################
+RewriteRule ^ index.php [QSA,L]
+
+########################################
+# PAGE D'ACCUEIL PAR DÉFAUT
+########################################
+DirectoryIndex index.php
