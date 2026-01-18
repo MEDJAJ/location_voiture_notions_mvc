@@ -35,7 +35,7 @@ if (strpos($uri, $prefix) === 0) {
 if ($action === '') $action = 'login';
 
 
-switch ($action) {
+switch ($action){
     case '':
     case 'login':
         $auth->login();
